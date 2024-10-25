@@ -20,7 +20,9 @@ def parse_args():
 
     read_parser = subparsers.add_parser("read")
     read_parser.add_argument("file", help="file to read")
-    read_parser.add_argument("--left", help="custom number of days to next repetition", type=int, required=False)
+    read_parser.add_argument("--days", help="custom number of days to next repetition", type=int, required=False)
+
+    update_parser = subparsers.add_parser("update")
 
     return parser.parse_args()
 
