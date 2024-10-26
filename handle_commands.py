@@ -2,6 +2,7 @@ import argparse
 import os
 import pandas as pd
 import list_files
+import print_list
 from datetime import datetime
 from random import randint
 
@@ -35,6 +36,8 @@ def create_cmd(args, current_dir):
     print(df)
 
 def list_cmd(args, current_dir):
+    update_cmd(args, current_dir)
+
     file_path = os.path.join(current_dir, ".sr")
     file_status = os.path.exists(file_path)
 
@@ -49,9 +52,9 @@ def list_cmd(args, current_dir):
     df["dif"] = df["period"] - (today - df["last_date"]).dt.days
 
     df = df.sort_values("dif")
-    df = df.drop(columns="dif", axis=0)
 
-    print(df)
+    print_list.display_dataframe(df, 5)
+
 
 def read_cmd(args, current_dir):
     file_path = os.path.join(current_dir, ".sr")
@@ -75,10 +78,16 @@ def read_cmd(args, current_dir):
     if args.days == None:
         df.loc[args.file, "period"] = 2 * df["period"][args.file]
 
+    df.loc[args.file, "times_read"] += 1
+
     df.to_csv(".sr")
 
 
 def update_cmd(args, current_dir):
+    ############################################
+    ## Add deleting .mds
+    ############################################
+
     file_path = os.path.join(current_dir, ".sr")
     file_status = os.path.exists(file_path)
 
@@ -101,6 +110,10 @@ def update_cmd(args, current_dir):
     for file in files:
         if file not in df.index:
             df.loc[file] = [0, today, 2]
+
+    for file in df.index:
+        if file not in files:
+            df = df.drop(labels=file)
 
     df.to_csv(".sr")
 
