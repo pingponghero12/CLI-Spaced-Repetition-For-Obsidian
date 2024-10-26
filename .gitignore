@@ -1,3 +1,7 @@
 __pycache__
 .sr
 dupa.md
+*.pyc
+srcli.egg-info
+DEBIAN
+build

@@ -1,8 +1,8 @@
 import pandas as pd
 import os
 import argparse
-import list_files
-import handle_commands
+from . import list_files
+from . import handle_commands
 
 def parse_args():
     parser = argparse.ArgumentParser()

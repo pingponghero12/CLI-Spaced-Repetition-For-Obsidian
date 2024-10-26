@@ -1,8 +1,8 @@
 import argparse
 import os
 import pandas as pd
-import list_files
-import print_list
+from . import list_files
+from . import print_list
 from datetime import datetime
 from random import randint
 
