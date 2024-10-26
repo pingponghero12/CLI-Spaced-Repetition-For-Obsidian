@@ -46,6 +46,15 @@ Examples:
   srcli update
 ```
 
+## To fix
+1. List one specific element.
+2. Config file.
+3. List number working.
+4. Fix list on non existing `.sr` error.
+5. Add list on directory.
+6. Add check version of srcli.
+7. Add entries to help.
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](https://www.mit.edu/~amini/LICENSE.md) file for details.
